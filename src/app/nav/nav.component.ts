@@ -1,4 +1,9 @@
+import { AlertifyService } from '../alertify.service';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+
+import { BsDropdownModule } from 'ngx-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -8,12 +13,28 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
   model: any = {};
 
-  constructor() { }
+  constructor(public authService: AuthService, private alertifyService: AlertifyService, private router: Router) { }
 
   ngOnInit() {
   }
 
   login() {
-    console.log(this.model);
+    this.authService.login(this.model).subscribe(next => {
+      this.alertifyService.success('Logged in!');
+    }, error => {
+      console.log(error);
+    }, () => {
+      this.router.navigate(['/members']);
+    });
+  }
+
+  loggedIn() {
+    return this.authService.loggedIn();
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.alertifyService.success('Logged out!');
+    this.router.navigate(['home']);
   }
 }

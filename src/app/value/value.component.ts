@@ -21,6 +21,6 @@ export class ValueComponent implements OnInit {
       console.log(this.values);
     }, error => {
       console.log(error);
-    })
+    });
   }
 }
