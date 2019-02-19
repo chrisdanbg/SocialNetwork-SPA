@@ -1,18 +1,21 @@
+import { MessagesResolver } from './_resolvers/messages.resolver';
+import { Pagination } from './_models/pagination';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes';
 import { MemberEditResoslver } from './_resolvers/member-edit.resolver';
 import { MemberDetailsResoslver } from './_resolvers/member-details.resolver';
 import { UserService } from './_services/user.service';
 import { appRoutes } from './routes';
 import { Routes, RouterModule } from '@angular/router';
-import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
 import { AlertifyService } from './alertify.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgxGalleryModule } from 'ngx-gallery';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ValueComponent} from './value/value.component';
@@ -29,6 +32,11 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { FileUploadComponent } from './members/file-upload/file-upload.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import { ListsResolver } from './_resolvers/lists.resolver';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -47,13 +55,22 @@ export function tokenGetter() {
     MemberCardComponent,
     MemberDetailComponent,
     MemberEditComponent,
+    PhotoEditorComponent,
+    FileUploadComponent,
+    TimeAgoPipe,
+    MemberMessagesComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    FileUploadModule,
+    ReactiveFormsModule,
+    ButtonsModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
+    PaginationModule.forRoot(),
     RouterModule.forRoot(
       appRoutes
     ),
@@ -75,7 +92,9 @@ export function tokenGetter() {
     UserService,
     MemberDetailsResoslver,
     MemberListResolver,
-    MemberEditResoslver
+    MemberEditResoslver,
+    MessagesResolver,
+    ListsResolver
   ],
   bootstrap: [AppComponent]
 })

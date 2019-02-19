@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-sm-2" *ngFor="let photo of photos">
+    <img src="{{photo.url || '../../../../../assets/default.png'}}" class="img-thumnail p-1" alt="">
+    <div class="text-center">
+      <button (click)="setMain(photo)"
+      [ngClass]="photo.isMain ? 'btn-success active' : 'btn-secondary'"
+      [disabled]="photo.isMain" type="button" class="btn btn-sm">Main</button>
+      <button [disabled]="photo.isMain" (click)="deletePhoto(photo)"type="button" class="btn btn-sm btn-danger ml-1"><i class="fa fa-trash"></i></button>
+    </div>
+  </div>
+</div>

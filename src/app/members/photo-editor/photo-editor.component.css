@@ -1,0 +1,6 @@
+img {
+    height: 100px;
+    min-width: 100px !important;
+    border: 1px rgb(231, 230, 230) solid;
+    margin-bottom: 0.5rem;
+}

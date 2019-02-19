@@ -14,7 +14,7 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="card">
-          <img src="{{user?.photoUrl}}" alt="{{user?.knownAs}}" class="card-img-top img-thumbnail">
+          <img src="{{photoUrl || '../../../../../assets/default.png'}}" alt="{{user?.knownAs}}" class="card-img-top img-thumbnail">
           <div class="card-body">
             <div>
               <strong>Location:</strong>
@@ -28,12 +28,12 @@
   
             <div>
                 <strong>Last active:</strong>
-                <p>{{user.lastActive}}</p>
+                <p>{{user.lastActive | timeAgo}}</p>
             </div>
   
             <div>
                 <strong>Member since:</strong>
-                <p>{{user.created}}</p>
+                <p>{{user.created | date: 'mediumDate'}}</p>
             </div>
           </div>
   
@@ -56,6 +56,8 @@
                       <textarea name="lookingFor" rows="6" class="form-control" [(ngModel)]="user.lookingFor"></textarea>
                       <h4>Interests</h4>
                       <textarea name="interests" rows="6" class="form-control" [(ngModel)]="user.interests"></textarea>
+                      <h4>Known as</h4>
+                      <textarea name="interests" rows="6" class="form-control" [(ngModel)]="user.knownAs"></textarea>
                       <h4>Location details</h4>
                       <div class="form-inline">
                         <label class="mr-2" for="city">City</label>
@@ -68,7 +70,8 @@
                   
                 </tab>
                 <tab heading="Edit Photos" class="mt-4">
-                    <p>Photo edit goes here</p>
+                    <app-photo-editor [photos]="user.photos" (getMemberPhotoChange)="updateMainPhoto($event)"></app-photo-editor>
+                    <app-file-upload [photos]="user.photos"></app-file-upload>
                 </tab>
               </tabset>
             </div>
