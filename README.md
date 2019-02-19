@@ -21,15 +21,19 @@ Building this project I've expanded my knowledge on:
 ## Screenshots
 
  * Login Page:
+ ---
 ![Screenshot](https://i.postimg.cc/W3wFwxY5/Screenshot-2019-02-19-at-14-57-35.png)
 
  * User Profile Page
+ ---
 ![Screenshot](https://i.postimg.cc/Fzxy1YQs/Screenshot-2019-02-19-at-15-00-04.png)
 
  * Upload Photos
+ ---
 ![Screenshot](https://i.postimg.cc/v87L0N6F/Screenshot-2019-02-19-at-15-00-49.png)
 
  * Register Page
+ ---
 ![Screenshot](https://i.postimg.cc/brP0zQWB/Screenshot-2019-02-19-at-14-59-29.png)
 
 ## Development server
